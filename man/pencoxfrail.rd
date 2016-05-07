@@ -33,8 +33,8 @@ of a group LASSO and, hence, controls the selection of covariates.
 \tabular{ll}{
 Package: \tab pencoxfrail\cr
 Type: \tab Package\cr
-Version: \tab 1.0.0\cr
-Date: \tab 2016-03-14\cr
+Version: \tab 1.0.1\cr
+Date: \tab 2016-05-06\cr
 License: \tab GPL-2\cr
 LazyLoad: \tab yes\cr
 }
