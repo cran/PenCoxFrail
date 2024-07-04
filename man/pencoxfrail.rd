@@ -1,6 +1,6 @@
 \name{pencoxfrail}
 \alias{pencoxfrail}
-\alias{pencoxfrail}
+\alias{PenCoxFrail-package}
 \docType{package}
 \title{
 Regularization in Cox Frailty Models.}
@@ -33,8 +33,8 @@ of a group LASSO and, hence, controls the selection of covariates.
 \tabular{ll}{
 Package: \tab pencoxfrail\cr
 Type: \tab Package\cr
-Version: \tab 1.0.1\cr
-Date: \tab 2016-05-06\cr
+Version: \tab 1.1.2\cr
+Date: \tab 2023-08-25\cr
 License: \tab GPL-2\cr
 LazyLoad: \tab yes\cr
 }
@@ -107,8 +107,8 @@ Andreas Groll  \email{groll@math.lmu.de}
 }
 
 \references{
-Groll, A., T. Hastie and G. Tutz (2016). 
-Regularization in Cox Frailty Models. Ludwig-Maximilians-University. \emph{Technical Report} 191.
+Groll, A., T. Hastie and G. Tutz (2017). 
+Selection of Effects in Cox Frailty Models by Regularization Methods. \emph{Biometrics} 73(3): 846-856.
 }
 
 
@@ -147,8 +147,7 @@ plot(pred.obj$time.grid,pred.obj$survival,type="l",xlab="time",ylab="survival")
 
 # see also demo("pencoxfrail-pbc")
 }}
-\keyword{
-Lasso, Shrinkage, Variable selection, Generalized linear mixed model
+\keyword{Cox frailty model; LASSO; Penalization; Time-varying coefficients; Variable selection
 }
 
 

@@ -286,8 +286,10 @@ est.pencoxfrail <- function(fix, rnd, vary.coef, data, xi, adaptive.weights = NU
   dimb <- ncol(Phi)
   dimr <- n*s
   
+  ## if no starting values are provided, fit "pure icept model"  
   if(is.null(start))
-    start <- rep(0,dimb + lin + dimr)
+    start <- c(-summary(survreg(update(fix,~ + 1), dist="exponential", data = data))$table[,1],rep(0,dimb + lin + dimr-1))
+  
   
   Delta <- matrix(NA,control$max.iter+1, dimb + lin + dimr)
   Delta[1,] <- start
@@ -355,7 +357,6 @@ est.pencoxfrail <- function(fix, rnd, vary.coef, data, xi, adaptive.weights = NU
     diag(P)[(dimb+lin+1):(dimb+lin+dimr)] <- 1/Q.start
   }else{
     Q_inv.start <- chol2inv(chol(Q.start))
-    P <- matrix(0,dimb+lin+dimr,dimb+lin+dimr)
     for(jf in 1:n)
       P[(dimb+lin+(jf-1)*s+1):(dimb+lin+jf*s),(dimb+lin+(jf-1)*s+1):(dimb+lin+jf*s)] <- Q_inv.start
   }
@@ -380,9 +381,9 @@ est.pencoxfrail <- function(fix, rnd, vary.coef, data, xi, adaptive.weights = NU
   ###
   
   InvFisher<-try(chol2inv(chol(P - Fisher)),silent=T)
-  if(class(InvFisher)=="try-error")
+  if(inherits(class(InvFisher),"try-error"))
     InvFisher<-try(solve(P - Fisher),silent=T)
-  if(class(InvFisher)=="try-error" || sum(is.na(InvFisher))>0)
+  if(inherits(class(InvFisher),"try-error") || sum(is.na(InvFisher))>0)
     stop("Current Fisher matrix not invertible")  
   
   Delta[2, ] <- start + InvFisher %*% score
@@ -399,7 +400,7 @@ est.pencoxfrail <- function(fix, rnd, vary.coef, data, xi, adaptive.weights = NU
   
   if(s==1)
   {
-    Q1 <- sum(diag(InvFisher)[(dimb+1):(dimb+lin+dimr)])+sum(ranef^2)
+    Q1 <- sum(diag(InvFisher)[(dimb+lin+1):(dimb+lin+dimr)])+sum(ranef^2)
   }else{ 
     Q1<-InvFisher[(dimb+lin+1):(dimb+lin+s),(dimb+lin+1):(dimb+lin+s)]+ranef[1:s]%*%t(ranef[1:s])
     for (i in 2:n)
@@ -473,7 +474,6 @@ est.pencoxfrail <- function(fix, rnd, vary.coef, data, xi, adaptive.weights = NU
       diag(P)[(dimb+lin+1):(dimb+lin+dimr)] <- 1/Q1
     }else{
       Q_inv <- chol2inv(chol(Q1))
-      P <- matrix(0,dimb+lin+dimr,dimb+lin+dimr)
       for(jf in 1:n)
         P[(dimb+lin+(jf-1)*s+1):(dimb+lin+jf*s),(dimb+lin+(jf-1)*s+1):(dimb+lin+jf*s)]<-Q_inv
     }
@@ -497,9 +497,9 @@ est.pencoxfrail <- function(fix, rnd, vary.coef, data, xi, adaptive.weights = NU
     
     ###
     InvFisher<-try(chol2inv(chol(P - Fisher)),silent=T)
-    if(class(InvFisher)=="try-error")
+    if(inherits(class(InvFisher),"try-error"))
       InvFisher<-try(solve(P - Fisher),silent=T)
-    if(class(InvFisher)=="try-error" || sum(is.na(InvFisher))>0)
+    if(inherits(class(InvFisher),"try-error") || sum(is.na(InvFisher))>0)
       stop("Current Fisher matrix not invertible")  
     
     Delta[ll+1, ] <- Delta[ll, ] + InvFisher %*% score
@@ -516,7 +516,7 @@ est.pencoxfrail <- function(fix, rnd, vary.coef, data, xi, adaptive.weights = NU
     
     if(s==1)
     {
-      Q1 <- sum(diag(InvFisher)[(dimb+1):(dimb+lin+dimr)])+sum(ranef^2)
+      Q1 <- sum(diag(InvFisher)[(dimb+lin+1):(dimb+lin+dimr)])+sum(ranef^2)
     }else{ 
       Q1<-InvFisher[(dimb+lin+1):(dimb+lin+s),(dimb+lin+1):(dimb+lin+s)]+ranef[1:s]%*%t(ranef[1:s])
       for (i in 2:n)

@@ -1,10 +1,13 @@
+//#define ARMA_64BIT_WORD
+#define ARMA_DONT_USE_CXX11
+
 // [[Rcpp::depends(RcppArmadillo)]]
+
 #include <RcppArmadillo.h>
 #include <Rcpp.h>
 
 using namespace Rcpp;
 using namespace arma;
-
 
 // [[Rcpp::export]]
 List IntegrMultiCpp(NumericMatrix alpha2,
@@ -39,12 +42,15 @@ List IntegrMultiCpp(NumericMatrix alpha2,
   mat intma = (helpcalc * Phibig) % Ueach;
 
   rowvec intarray = teta * ((helpcalc * Phidoublebig) % Udoubleeach);
-
+  
+  rowvec intlikeli = teta * helpcalc;
+  
   return List::create(Named("int.array") = intarray,
                       Named("int.ma") = intma,
                       Named("eta") = eta,
                       Named("lin.pred") = linpred,
                       Named("t.eta") = teta,
+                      Named("int.likeli") = intlikeli,
                       Named("help.calc") = helpcalc);
 }
 

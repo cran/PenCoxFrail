@@ -2,12 +2,11 @@
 \alias{bs.design}
 \concept{bs.design}
 \title{Generate a B-spline design matrix}
-\description{The function generates a B-spline design matrix with equidistant knots for given degree of the splines and number of basis functions.
-}
+\description{The function generates a B-spline design matrix with equidistant knots for given degree of the splines and number of basis functions.}
 
 \usage{
-
-bs.design(x, xl, xr, spline.degree, nbasis, comp = NULL)} 
+bs.design(x, xl, xr, spline.degree, nbasis, comp = NULL)
+} 
     
 \arguments{
   \item{x}{the positions where spline to be evaluated.}

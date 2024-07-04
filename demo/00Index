@@ -1,2 +1,3 @@
-pencoxfrail-pbc    The analysis of the pbc data using the pencoxfrail function.
+pencoxfrail-pbc	The analysis of the pbc data using the pencoxfrail function.
+coxlasso-lung	The analysis of the lung data using the coxlasso function.
 
