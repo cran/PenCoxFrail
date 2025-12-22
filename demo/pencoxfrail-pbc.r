@@ -245,7 +245,7 @@ vary.coef <- as.formula(" ~ log.bili + log.protime")
   gam.data <- data.frame(time=times,haz.gam=hazard)
   names(gam.data) <- c("time","haz.gam")
   
-  library(mgcv)
+  requireNamespace("mgcv")
   gam.obj <- gam(haz.gam ~ s(time), data=gam.data)
   new.gam.data <- data.frame(time = c(time.seq,max(time.seq)+diff(time.seq)[1]))
   haz.gam.smooth<-predict(gam.obj, newdata = new.gam.data, type = "terms")[,1]+gam.obj$coef[1]
@@ -283,4 +283,4 @@ vary.coef <- as.formula(" ~ log.bili + log.protime")
            col=c("black",rgb(0.8,0,0),rgb(0.8,0,0)),lwd=2,lty=c(rep(1,2),2),box.lwd=2,y.intersp=1.2,cex=1.2)
     
       }
-  
+ 

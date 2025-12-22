@@ -33,8 +33,8 @@ of a group LASSO and, hence, controls the selection of covariates.
 \tabular{ll}{
 Package: \tab pencoxfrail\cr
 Type: \tab Package\cr
-Version: \tab 1.1.2\cr
-Date: \tab 2023-08-25\cr
+Version: \tab 2.0.0\cr
+Date: \tab 2024-07-15\cr
 License: \tab GPL-2\cr
 LazyLoad: \tab yes\cr
 }
@@ -116,7 +116,7 @@ Selection of Effects in Cox Frailty Models by Regularization Methods. \emph{Biom
 \code{\link{pencoxfrailControl},\link[survival]{Surv},\link[survival]{pbc}}
 }
 \examples{
-\dontrun{
+\donttest{
 data(lung)
 
 # remove NAs
@@ -147,7 +147,8 @@ plot(pred.obj$time.grid,pred.obj$survival,type="l",xlab="time",ylab="survival")
 
 # see also demo("pencoxfrail-pbc")
 }}
-\keyword{Cox frailty model; LASSO; Penalization; Time-varying coefficients; Variable selection
-}
-
-
+\concept{Cox frailty model}
+\concept{LASSO}
+\concept{Penalization}
+\concept{Time-varying coefficients}
+\concept{Variable selection}

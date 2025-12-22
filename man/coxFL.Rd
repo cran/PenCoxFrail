@@ -20,8 +20,8 @@ the effect strength over time, some features can incorporated with time-varying 
 \tabular{ll}{
 Package: \tab pencoxfrail\cr
 Type: \tab Package\cr
-Version: \tab 1.1.2\cr
-Date: \tab 2023-08-25\cr
+Version: \tab 2.0.0\cr
+Date: \tab 2024-07-15\cr
 License: \tab GPL-2\cr
 LazyLoad: \tab yes\cr
 }
